@@ -1,0 +1,39 @@
+<div class="examenes-wrapper">
+  <h1>Gestión de Exámenes</h1>
+
+  <div class="form-container">
+    <input type="text" placeholder="Nombre del examen" [(ngModel)]="nuevoExamen.nombre">
+    <input type="text" placeholder="Materia" [(ngModel)]="nuevoExamen.materia">
+    <input type="date" placeholder="Fecha" [(ngModel)]="nuevoExamen.fecha">
+    <button *ngIf="!editarModo" (click)="agregarExamen()">Agregar Examen</button>
+    <div *ngIf="editarModo">
+      <button (click)="guardarEdicion()">Guardar</button>
+      <button class="cancel" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </div>
+
+  <!--  exámenes -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Materia</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let examen of examenes">
+        <td>{{ examen.id }}</td>
+        <td>{{ examen.nombre }}</td>
+        <td>{{ examen.materia }}</td>
+        <td>{{ examen.fecha }}</td>
+        <td>
+          <button class="edit" (click)="editarExamen(examen)">Editar</button>
+          <button class="delete" (click)="eliminarExamen(examen.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

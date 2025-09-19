@@ -1,0 +1,90 @@
+<div class="dashboard-container">
+  <header class="header">
+    <div class="menu-toggle" (click)="toggleSidebar()">
+      <span class="hamburger">☰</span>
+      <span class="arrow" [class.rotate]="!isSidebarOpen">▶</span>
+    </div>
+    <div class="logo">
+      <img src="https://www.forintec-campusinteramericano.com/assets/img/forinteclogo.jpg" alt="Forintec Logo" class="logo-img">
+      <h2>Universidad Forintec C-UNI<br>Campus Universitario Interamericano</h2>
+    </div>
+    <div class="user-actions">
+      <button class="fullscreen-btn" (click)="toggleFullScreen()">
+        <span *ngIf="!isFullScreen">📺</span>
+        <span *ngIf="isFullScreen">📷</span>
+      </button>
+      <div class="user-info">Bienvenido, Administrador <span class="logout" (click)="logout()">Salir</span></div>
+    </div>
+  </header>
+  <nav class="sidebar" [class.collapsed]="!isSidebarOpen">
+    <ul>
+      <li><a routerLink="/dashboard" [class.active]="isSidebarOpen">🏠 Inicio</a></li>
+      <li><a routerLink="/alumnos" [class.active]="!isSidebarOpen">🎓 Alumnos</a></li>
+      <li><a routerLink="/materias">📚 Materias</a></li>
+      <li><a href="#">👥 Usuarios</a></li>
+      <li><a href="#">📝 Exámenes</a></li>
+      <li><a href="#">📊 Reportes</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <h3>Gestión de Alumnos</h3>
+    <div class="alumnos-container">
+      <div class="form-section">
+        <h4 class="subtitle">{{ editando ? 'Editar Alumno' : 'Agregar Alumno' }}</h4>
+        <form (ngSubmit)="agregarOEditarAlumno()" class="alumno-form">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="nuevoAlumno.nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" [(ngModel)]="nuevoAlumno.apellido" name="apellido" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="nuevoAlumno.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" [(ngModel)]="nuevoAlumno.matricula" name="matricula">
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn primary">{{ editando ? 'Guardar' : 'Agregar' }}</button>
+            <button type="button" class="btn secondary" (click)="cancelar()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+      <div class="table-section">
+        <h4 class="subtitle">Lista de Alumnos</h4>
+        <div class="table-wrapper">
+          <table class="alumnos-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Matrícula</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alumno of alumnos">
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.apellido }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>{{ alumno.matricula || 'N/A' }}</td>
+                <td>
+                  <button class="btn edit" (click)="editarAlumno(alumno)">Editar</button>
+                  <button class="btn delete" (click)="eliminarAlumno(alumno.id!)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <p>© 2025 Universidad Forintec C-UNI | <a href="#">Soporte</a></p>
+  </footer>
+</div>

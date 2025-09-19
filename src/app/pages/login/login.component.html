@@ -1,0 +1,44 @@
+<div class="login-container">
+  
+  <div class="background-slideshow">
+    <div class="slide" style="background-image: url('assets/slide1.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/slide2.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/slide3.jpg');"></div>
+  </div>
+
+  <div class="login-overlay"></div>
+
+  <div class="login-box">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="https://www.forintec-campusinteramericano.com/assets/img/forinteclogo.jpg" alt="Forintec Logo" class="logo-img">
+      <h2>Acceso al Sistema</h2>
+    </div>
+
+    <!-- Formulario -->
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <label for="username">Usuario</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        <span class="icon">👤</span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        <span class="icon">🔒</span>
+      </div>
+
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="login-btn">Iniciar sesión</button>
+
+      <div class="extra-options">
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        <a href="#" class="register">Registrarse</a>
+      </div>
+    </form>
+
+    <div class="decor-image"></div>
+  </div>
+</div>

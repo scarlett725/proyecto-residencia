@@ -1,0 +1,44 @@
+<div class="usuarios-wrapper">
+  <h1>Gestión de Usuarios</h1>
+
+  <!-- Formulario agregar / editar -->
+  <div class="form-container">
+    <input type="text" placeholder="Nombre" [(ngModel)]="nuevoUsuario.nombre">
+    <input type="email" placeholder="Correo" [(ngModel)]="nuevoUsuario.correo">
+    <select [(ngModel)]="nuevoUsuario.rol">
+      <option value="" disabled selected>Selecciona un rol</option>
+      <option>Admin</option>
+      <option>Profesor</option>
+    </select>
+    <button *ngIf="!editarModo" (click)="agregarUsuario()">Agregar Usuario</button>
+    <div *ngIf="editarModo">
+      <button (click)="guardarEdicion()">Guardar</button>
+      <button class="cancel" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Tabla de usuarios -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.correo }}</td>
+        <td>{{ usuario.rol }}</td>
+        <td>
+          <button class="edit" (click)="editarUsuario(usuario)">Editar</button>
+          <button class="delete" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

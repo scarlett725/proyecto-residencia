@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <header class="header">
+    <div class="menu-toggle" (click)="toggleSidebar()">
+      <span class="hamburger">☰</span>
+      <span class="arrow" [class.rotate]="!isSidebarOpen">▶</span>
+    </div>
+    <div class="logo" style="text-align: center; flex-grow: 1;">
+      <img src="https://www.forintec-campusinteramericano.com/assets/img/forinteclogo.jpg" alt="Forintec Logo" class="logo-img">
+      <h2>Universidad Forintec C-UNI<br>Campus Universitario Interamericano</h2>
+    </div>
+    <div class="user-actions">
+      <button class="fullscreen-btn" (click)="toggleFullScreen()">
+        <span *ngIf="!isFullScreen">📺</span>
+        <span *ngIf="isFullScreen">📷</span>
+      </button>
+      <div class="user-info">Bienvenido, Administrador <span class="logout" (click)="logout()">Salir</span></div>
+    </div>
+  </header>
+  <nav class="sidebar" [class.collapsed]="!isSidebarOpen">
+    <ul>
+      <li><a routerLink="/dashboard" [class.active]="isSidebarOpen">🏠 Inicio</a></li>
+      <li><a routerLink="/alumnos">🎓 Alumnos</a></li>
+      <li><a routerLink="/materias">📚 Materias</a></li>
+      <li><a href="#">👥 Usuarios</a></li>
+      <li><a href="#">📝 Exámenes</a></li>
+      <li><a href="#">📊 Reportes</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <h3>Panel Administrativo</h3>
+    <div class="stats-grid">
+      <div class="stat-card" style="background: linear-gradient(135deg, #4dabf7, #007bff);">
+        <div class="icon">👥</div>
+        <div>Usuarios: 150</div>
+        <a href="#" class="more-info">Más info</a>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(135deg, #5fd673, #28a745);">
+        <div class="icon">🎓</div>
+        <div>Alumnos: 120</div>
+        <a href="#" class="more-info">Más info</a>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(135deg, #3ec6d7, #17a2b8);">
+        <div class="icon">📝</div>
+        <div>Exámenes: 25</div>
+        <a href="#" class="more-info">Más info</a>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(135deg, #ff6b6b, #dc3545);">
+        <div class="icon">📚</div>
+        <div>Materias: 7</div>
+        <a routerLink="/materias" class="more-info">Más info</a>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(135deg, #8a9096, #6c757d);">
+        <div class="icon">👤</div>
+        <div>Administrativos: 3</div>
+        <a href="#" class="more-info">Más info</a>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(135deg, #ffcc00, #ffc107);">
+        <div class="icon">🎓</div>
+        <div>Estudiantes Activos: 56</div>
+        <a href="#" class="more-info">Más info</a>
+      </div>
+    </div>
+    <div class="charts-section" style="margin-top: 30px;">
+      <h4>Gráficas</h4>
+      <!-- Espacio  para gráficas, se implementará más adelante -->
+      <div id="chart-placeholder" style="height: 300px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+    </div>
+  </main>
+  <footer class="footer">
+    <p>© 2025 Universidad Forintec C-UNI | <a href="#">Soporte</a></p>
+  </footer>
+</div>
